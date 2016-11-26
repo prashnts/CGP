@@ -57,7 +57,7 @@ function Color(str)
 		this.a = parseInt(bits[4], 16)/255;
   } else if ((bits = /^rgb\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\)$/.exec(str))) {
     this.r = parseInt(bits[1], 10);
-		this.g = parseInt(bits[2], 10); 
+		this.g = parseInt(bits[2], 10);
 		this.b = parseInt(bits[3], 10);
   } else if ((bits = /^rgba\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([0-9.]+)\)$/.exec(str))) {
     this.r = parseInt(bits[1], 10);

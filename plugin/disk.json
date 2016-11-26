@@ -6,11 +6,11 @@
 		"legend": {
 			"read": {
 				"name": "Read",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"write": {
 				"name": "Write",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s"
@@ -22,11 +22,11 @@
 		"legend": {
 			"read": {
 				"name": "Read",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"write": {
 				"name": "Write",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s"
@@ -38,11 +38,11 @@
 		"legend": {
 			"read": {
 				"name": "Read",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"write": {
 				"name": "Write",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s"
@@ -54,11 +54,11 @@
 		"legend": {
 			"read": {
 				"name": "Read",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"write": {
 				"name": "Write",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%ss",

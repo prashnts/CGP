@@ -6,11 +6,11 @@
 		"legend": {
 			"rx": {
 				"name": "Receive",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"tx": {
 				"name": "Transmit",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s",
@@ -23,11 +23,11 @@
 		"legend": {
 			"rx": {
 				"name": "Receive",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"tx": {
 				"name": "Transmit",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s"
@@ -39,11 +39,11 @@
 		"legend": {
 			"rx": {
 				"name": "Receive",
-				"color": "0000ff"
+				"color": "dff28a"
 			},
 			"tx": {
 				"name": "Transmit",
-				"color": "00b000"
+				"color": "62bfdb"
 			}
 		},
 		"legend_format": "%5.1lf%s"

@@ -181,7 +181,7 @@ RrdGraphDesc.cf_conv = function (str)
 	return -1;
 };
 
-RrdGraphDesc.cf2str = function (cf) 
+RrdGraphDesc.cf2str = function (cf)
 {
 	switch (cf){
 		case RrdGraphDesc.CF_AVERAGE: return 'AVERAGE';
@@ -776,8 +776,8 @@ var RrdGraph = function (gfx, data)
 	this.xsize = 400; /* graph area size in pixels */
 	this.ysize = 100;
 	this.zoom = 1;
-	this.grid_dash_on = 1;
-	this.grid_dash_off = 1;
+	this.grid_dash_on = 8;
+	this.grid_dash_off = 5;
 	this.second_axis_scale = 0; /* relative to the first axis (0 to disable) */
 	this.second_axis_shift = 0; /* how much is it shifted vs the first axis */
 	this.second_axis_legend = null; /* label to put on the seond axis */
@@ -786,7 +786,7 @@ var RrdGraph = function (gfx, data)
 	this.draw_y_grid = true;  /* no y-grid at all */
 	this.ygridstep = Number.NaN;    /* user defined step for y grid */
 	this.ylabfact = 0; /* every how many y grid shall a label be written ? */
-	this.draw_3d_border = 2; /* size of border in pixels, 0 for off */
+	this.draw_3d_border = 0; /* size of border in pixels, 0 for off */
 	this.dynamic_labels = false;/* pick the label shape according to the line drawn */
 	this.ylegend = null; /* legend along the yaxis */
 	this.title = ''; /* title for graph */
@@ -813,7 +813,7 @@ var RrdGraph = function (gfx, data)
 	this.alt_autoscale_min = false; /* use alternative algorithm to find lower bounds */
 	this.alt_autoscale_max = false; /* use alternative algorithm to find upper bounds */
 	this.no_legend = false; /* use no legend */
-	this.no_minor = false; /* Turn off minor gridlines */
+	this.no_minor = true; /* Turn off minor gridlines */
 	this.only_graph = false; /* use only graph */
 	this.force_rules_legend = false; /* force printing of HRULE and VRULE legend */
 	this.force_units = false;   /* mask for all FORCE_UNITS_* flags */
@@ -833,27 +833,27 @@ var RrdGraph = function (gfx, data)
 	this.AlmostEqualInt = new Int32Array(this.AlmostEqualBuffer);
 	this.AlmostEqualFloat = new Float32Array(this.AlmostEqualBuffer);
 
-	this.DEFAULT_FONT = "'DejaVu Sans Mono', 'Courier', 'Ubuntu Mono'"; // pt -> pt=px*72/96
-	this.MGRIDWIDTH = 0.6;
-	this.GRIDWIDTH = 0.4;
+	this.DEFAULT_FONT = "'Fira Code', 'Courier', 'Ubuntu Mono'"; // pt -> pt=px*72/96
+	this.MGRIDWIDTH = 0.2;
+	this.GRIDWIDTH = 0.2;
 	this.YLEGEND_ANGLE = 90.0;
 
-	this.TEXT = {	
-			DEFAULT: { size: 11, font: this.DEFAULT_FONT },
-			TITLE: { size: 12, font: this.DEFAULT_FONT },
-			AXIS: { size: 10, font: this.DEFAULT_FONT },
-			UNIT: { size: 11, font: this.DEFAULT_FONT },
-			LEGEND: { size: 11, font: this.DEFAULT_FONT },
-			WATERMARK: { size: 8, font: this.DEFAULT_FONT }
-	};	
+	this.TEXT = {
+			DEFAULT: { size: 12, font: this.DEFAULT_FONT },
+			TITLE: { size: 18, font: this.DEFAULT_FONT },
+			AXIS: { size: 14, font: this.DEFAULT_FONT },
+			UNIT: { size: 14, font: this.DEFAULT_FONT },
+			LEGEND: { size: 14, font: this.DEFAULT_FONT },
+			WATERMARK: { size: 10, font: this.DEFAULT_FONT }
+	};
 
-	this.GRC = {	
+	this.GRC = {
 			CANVAS: 'rgba(255, 255, 255, 1.0)',
 			BACK: 'rgba(242,242, 242, 1.0)',
 			SHADEA: 'rgba(207, 207, 207, 1.0)',
 			SHADEB: 'rgba(158, 158, 158, 1.0)',
-			GRID: 'rgba(143, 143, 143, 0.75)',
-			MGRID: 'rgba(222, 79, 79, 0.60)',
+			GRID: 'rgba(143, 143, 143, 0.25)',
+			MGRID: 'rgba(143, 143, 143, 0.40)',
 			FONT: 'rgba(0, 0, 0, 1.0)',
 			ARROW: 'rgba(127, 31, 31, 1.0)',
 			AXIS: 'rgba(31, 31, 31, 1.0)',
@@ -883,7 +883,7 @@ var RrdGraph = function (gfx, data)
 		{minsec: -1, length: 0, gridtm: RrdGraph.TMT_MONTH, gridst: 0, mgridtm: RrdGraph.TMT_MONTH, mgridst: 0, labtm: RrdGraph.TMT_MONTH, labst: 0, precis: 0, stst: null }
 	];
 
-	this.ylab = [ 
+	this.ylab = [
 		{grid: 0.1, lfac: [1, 2, 5, 10] } ,
 		{grid: 0.2, lfac: [1, 5, 10, 20] } ,
 		{grid: 0.5, lfac: [1, 2, 4, 10] } ,
@@ -2761,10 +2761,10 @@ RrdGraph.prototype.graph_paint_draw = function()
 				for (var ii = 0; ii < this.xsize; ii++) {
 					if (!isNaN(this.gdes[i].p_data[ii]) && this.gdes[i].p_data[ii] != 0.0) {
 						if (this.gdes[i].yrule > 0) {
-							this.gfx.line(this.xorigin + ii, this.yorigin + 1.0, 
+							this.gfx.line(this.xorigin + ii, this.yorigin + 1.0,
 									this.xorigin + ii, this.yorigin - this.gdes[i].yrule * this.ysize, 1.0, this.gdes[i].col);
 						} else if (this.gdes[i].yrule < 0) {
-							this.gfx.line(this.xorigin + ii, this.yorigin - this.ysize - 1.0, 
+							this.gfx.line(this.xorigin + ii, this.yorigin - this.ysize - 1.0,
 									this.xorigin + ii, this.yorigin - this.ysize - this.gdes[i].yrule * this.ysize, 1.0, this.gdes[i].col);
 						}
 					}
@@ -2932,14 +2932,14 @@ RrdGraph.prototype.graph_paint_draw = function()
 			case RrdGraphDesc.GF_HRULE:
 				if (this.gdes[i].yrule >= this.minval && this.gdes[i].yrule <= this.maxval) {
 					if (this.gdes[i].dash) this.gfx.set_dash(this.gdes[i].p_dashes, this.gdes[i].ndash, this.gdes[i].offset);
-					this.gfx.line(this.xorigin, this.ytr(this.gdes[i].yrule), 
+					this.gfx.line(this.xorigin, this.ytr(this.gdes[i].yrule),
 						this.xorigin + this.xsize, this.ytr(this.gdes[i].yrule), 1.0, this.gdes[i].col);
 				}
 				break;
 			case RrdGraphDesc.GF_VRULE:
 				if (this.gdes[i].xrule >= this.start && this.gdes[i].xrule <= this.end) {
 					if (this.gdes[i].dash) this.gfx.set_dash(this.gdes[i].p_dashes, this.gdes[i].ndash, this.gdes[i].offset);
-					this.gfx.line(this.xtr(this.gdes[i].xrule), this.yorigin, 
+					this.gfx.line(this.xtr(this.gdes[i].xrule), this.yorigin,
 						this.xtr(this.gdes[i].xrule), this.yorigin - this.ysize, 1.0, this.gdes[i].col);
 				}
 				break;

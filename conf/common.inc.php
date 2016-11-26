@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 0);
+
+// Enable error reporting for NOTICES
+error_reporting(E_NOTICE);
 
 require_once 'config.php';
 

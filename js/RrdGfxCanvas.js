@@ -24,7 +24,7 @@
  * RrdGfxCanvas
  * @constructor
  */
-var RrdGfxCanvas = function(canvasId) 
+var RrdGfxCanvas = function(canvasId)
 {
 	this.canvas = document.getElementById(canvasId);
 	this.ctx = this.canvas.getContext('2d');
@@ -33,10 +33,27 @@ var RrdGfxCanvas = function(canvasId)
 	this.dash_array = null;
 };
 
+function shadeColor2(color, percent) {
+    var f = color.split(","),
+    	t = percent < 0 ? 0 : 255,
+    	p = percent < 0 ? percent * -1 : percent,
+    	R = parseInt(f[0].slice(5)),
+    	G = parseInt(f[1]),
+    	B = parseInt(f[2]),
+    	A = f[3];
+    return "rgba(" +
+    	(Math.round((t - R) * p) + R) + "," +
+    	(Math.round((t - G) * p) + G) + "," +
+    	(Math.round((t - B) * p) + B) + "," +
+    	A;
+}
+
 RrdGfxCanvas.prototype.size = function (width, height)
 {
 	this.canvas.width = width;
 	this.canvas.height = height;
+	this.canvas.style.width = width / 2 + 'px';
+	this.canvas.style.height = height / 2 + 'px';
 };
 
 RrdGfxCanvas.prototype.set_dash = function (dashes, n, offset)
@@ -189,7 +206,7 @@ RrdGfxCanvas.prototype.new_area = function (X0, Y0, X1, Y1, X2, Y2, color)
 	Y1 = Math.round(Y1)+0.5;
 	X2 = Math.round(X2)+0.5;
 	Y2 = Math.round(Y2)+0.5;
-	this.ctx.fillStyle = color;
+	this.ctx.fillStyle = shadeColor2(color, 0);
 	this.ctx.beginPath();
 	this.ctx.moveTo(X0, Y0);
 	this.ctx.lineTo(X1, Y1);
@@ -214,8 +231,8 @@ RrdGfxCanvas.prototype.stroke_begin = function (width, style)
 	this.ctx.save();
 	this.ctx.beginPath();
 	if (this.dash) this._set_dash();
-	this.ctx.lineWidth = width;
-	this.ctx.strokeStyle = style;
+	this.ctx.lineWidth = 2;
+	this.ctx.strokeStyle = shadeColor2(style, -.4);
 	this.ctx.lineCap = 'round';
 	this.ctx.round = 'round';
 };

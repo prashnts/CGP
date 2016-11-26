@@ -138,7 +138,18 @@ hr {
 }
 
 .graphs {
-	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.graphs .graph {
+	margin: 10px;
+}
+
+.graphs canvas {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin: 10px;
 }
 
 .graphs img {

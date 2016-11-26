@@ -4,13 +4,13 @@
 $CONFIG['version'] = 5;
 
 # collectd's datadir
-$CONFIG['datadir'] = '/var/lib/collectd/rrd';
+$CONFIG['datadir'] = '/data/logs/collectd';
 
 # location of the types.db file
 $CONFIG['typesdb'][] = '/usr/share/collectd/types.db';
 
 # rrdtool executable
-$CONFIG['rrdtool'] = '/usr/bin/rrdtool';
+$CONFIG['rrdtool'] = '/usr/local/bin/rrdtool';
 
 # rrdtool special command-line options
 $CONFIG['rrdtool_opts'] = array();
@@ -19,17 +19,17 @@ $CONFIG['rrdtool_opts'] = array();
 #$CONFIG['cat']['category1'] = array('host1', 'host2');
 
 # category of hosts based on regular expression
-#$CONFIG['cat']['Mailservers'] = '/mail\d+/';
+$CONFIG['cat']['Riptide'] = '/riptide/';
 
 # default plugins to show on host page
-$CONFIG['overview'] = array('load', 'cpu', 'memory', 'swap');
+$CONFIG['overview'] = array('load', 'cpu', 'memory', 'interface');
 
 # example of filter to show only the if_octets of eth0 on host page
 # (interface must be enabled in the overview config array)
-#$CONFIG['overview_filter']['interface'] = array('ti' => 'eth0', 't' => 'if_octets');
+$CONFIG['overview_filter']['interface'] = array('t' => 'if_octets');
 
 # default plugins time range
-$CONFIG['time_range']['default'] = 86400;
+$CONFIG['time_range']['default'] = 3600 * 1;
 $CONFIG['time_range']['uptime']  = 31536000;
 
 # show load averages and used memory on overview page
@@ -38,6 +38,7 @@ $CONFIG['showmem'] = false;
 $CONFIG['showtime'] = false;
 
 $CONFIG['term'] = array(
+  '1hour'  => 3600 * 1,
 	'2hour'	 => 3600 * 2,
 	'8hour'	 => 3600 * 8,
 	'day'	 => 86400,
@@ -48,13 +49,13 @@ $CONFIG['term'] = array(
 );
 
 # show graphs in bits or bytes
-$CONFIG['network_datasize'] = 'bytes';
+$CONFIG['network_datasize'] = 'bits';
 
 # "png", "svg", "canvas" or "hybrid" (canvas on detail page, png on the others) graphs
-$CONFIG['graph_type'] = 'png';
+$CONFIG['graph_type'] = 'canvas';
 
 # For canvas graphs, use 'async' or 'sync' fetch method
-$CONFIG['rrd_fetch_method'] = 'sync';
+$CONFIG['rrd_fetch_method'] = 'async';
 
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
@@ -64,7 +65,7 @@ $CONFIG['negative_io'] = false;
 $CONFIG['percentile'] = false;
 
 # create smooth graphs (rrdtool -E)
-$CONFIG['graph_smooth'] = false;
+$CONFIG['graph_smooth'] = true;
 
 # draw min/max spikes in a lighter color in graphs with type default
 $CONFIG['graph_minmax'] = false;
@@ -81,11 +82,11 @@ $CONFIG['cache'] = 90;
 $CONFIG['page_refresh'] = '';
 
 # default width/height of the graphs
-$CONFIG['width'] = 400;
-$CONFIG['height'] = 175;
+$CONFIG['width'] = 400 * 2;
+$CONFIG['height'] = 175 * 2;
 # default width/height of detailed graphs
-$CONFIG['detail-width'] = 800;
-$CONFIG['detail-height'] = 350;
+$CONFIG['detail-width'] = 800 * 2;
+$CONFIG['detail-height'] = 350 * 2;
 # max width/height of a graph (to prevent from OOM)
 $CONFIG['max-width'] = $CONFIG['detail-width'] * 2;
 $CONFIG['max-height'] = $CONFIG['detail-height'] * 2;
@@ -101,7 +102,7 @@ $CONFIG['socket'] = NULL;
 $CONFIG['flush_type'] = 'collectd';
 
 # system default timezone when not set
-$CONFIG['default_timezone'] = 'UTC';
+$CONFIG['default_timezone'] = 'Asia/Kolkata';
 
 
 # load local configuration

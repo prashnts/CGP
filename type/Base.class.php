@@ -115,7 +115,7 @@ class Type_Base {
 			return $color;
 	}
 
-	function get_faded_color($fgc, $bgc='ffffff', $percent=0.25) {
+	function get_faded_color($fgc, $bgc='ffffff', $percent=1.0) {
 		$fgc = $this->validate_color($fgc);
 		if (!is_numeric($percent))
 			$percent=0.25;

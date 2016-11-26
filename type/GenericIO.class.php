@@ -3,7 +3,7 @@
 require_once 'Base.class.php';
 
 class Type_GenericIO extends Type_Base {
-	
+
 	function rrd_gen_graph() {
 		$rrdgraph = $this->rrd_options();
 

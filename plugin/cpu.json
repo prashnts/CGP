@@ -7,15 +7,15 @@
 		"legend": {
 			"idle": {
 				"name": "Idle",
-				"color": "e8e8e8"
+				"color": "abdda4"
 			},
 			"nice": {
 				"name": "Nice",
-				"color": "00e000"
+				"color": "33a02c"
 			},
 			"user": {
 				"name": "User",
-				"color": "0000ff"
+				"color": "0e99ef"
 			},
 			"wait": {
 				"name": "Wait-IO",
@@ -23,7 +23,7 @@
 			},
 			"system": {
 				"name": "System",
-				"color": "ff0000"
+				"color": "fdae61"
 			},
 			"softirq": {
 				"name": "SoftIRQ",
